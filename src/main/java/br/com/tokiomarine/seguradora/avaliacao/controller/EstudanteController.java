@@ -1,7 +1,12 @@
 package br.com.tokiomarine.seguradora.avaliacao.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,12 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.service.EstudandeService;
+import lombok.extern.java.Log;
 
+@Log
 @Controller
 @RequestMapping("/estudantes/")
 public class EstudanteController {
 
-	// TODO efetue a correção dos problemas que existem na classe Estudante Controller
+	static final Logger logger = LoggerFactory.getLogger(EstudanteController.class);
+
+	@Autowired
 	EstudandeService service;
 
 	@GetMapping("criar")
@@ -27,7 +36,7 @@ public class EstudanteController {
 
 	@GetMapping("listar")
 	public String listarEstudantes(Model model) {
-		model.addAttribute("estudtes", service.buscarEstudantes());
+		model.addAttribute("estudantes", service.buscarEstudantes());
 		return "index";
 	}
 
@@ -43,7 +52,7 @@ public class EstudanteController {
 	}
 
 	@GetMapping("editar/{id}")
-	public String exibirEdicaoEstudante(long id, Model model) {
+	public String exibirEdicaoEstudante(@PathVariable("id")  long id, Model model) {
 		Estudante estudante = service.buscarEstudante(id);
 		model.addAttribute("estudante", estudante);
 		return "atualizar-estudante";
@@ -64,8 +73,9 @@ public class EstudanteController {
 
 	@GetMapping("apagar/{id}")
 	public String apagarEstudante(@PathVariable("id") long id, Model model) {
-		// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
-		model.addAttribute("estudantes", service.buscarEstudantes());
+		service.excluirEstudante(id);
+		List<Estudante> estudantes = service.buscarEstudantes();
+		model.addAttribute("estudantes", (estudantes != null && estudantes.size() == 0) ? null : estudantes);
 		return "index";
 	}
 }
