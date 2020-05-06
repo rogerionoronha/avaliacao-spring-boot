@@ -1,0 +1,13 @@
+## Contatos ##
+
+Nome: 	Rogério Noronha
+Tel.: 	(11) 99108-4472
+email:	rogerio.noronha@gmail.com
+
+## Observações  ##
+
+1	-	Este projeto foi implementado com Maven, utilizando a IDE Eclipse; 
+2	-	O Build de deverá ser utilizado com o commando "mvn clean package -DskipTests";
+3 	- 	O Bando utilizado foi o "H2", utilizado em memória (jdbc:h2:mem:testdb);
+4	-	O login padrão é "sa" e a senha é "password";
+
