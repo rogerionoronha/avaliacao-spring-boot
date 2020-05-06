@@ -24,7 +24,6 @@ import lombok.extern.java.Log;
 @RequestMapping("/estudantes/")
 public class EstudanteController {
 
-	// TODO efetue a correção dos problemas que existem na classe Estudante Controller
 	static final Logger logger = LoggerFactory.getLogger(EstudanteController.class);
 
 	@Autowired
@@ -74,7 +73,6 @@ public class EstudanteController {
 
 	@GetMapping("apagar/{id}")
 	public String apagarEstudante(@PathVariable("id") long id, Model model) {
-		// TODO IMPLEMENTAR A EXCLUSAO DE ESTUDANTES
 		service.excluirEstudante(id);
 		List<Estudante> estudantes = service.buscarEstudantes();
 		model.addAttribute("estudantes", (estudantes != null && estudantes.size() == 0) ? null : estudantes);

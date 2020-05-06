@@ -14,8 +14,6 @@ import br.com.tokiomarine.seguradora.avaliacao.entidade.Estudante;
 import br.com.tokiomarine.seguradora.avaliacao.repository.EstudanteRepository;
 import lombok.extern.java.Log;
 
-// TODO Efetue a implementação dos métodos da classe service
-
 @Log
 @Service
 public class EstudanteServiceImpl implements EstudandeService {

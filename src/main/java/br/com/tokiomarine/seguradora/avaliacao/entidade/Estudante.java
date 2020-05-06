@@ -16,9 +16,7 @@ import lombok.Data;
 @Data
 @Table(name="Estudante")
 public class Estudante {
-	// TODO Implementar a entidade Estudante conforme solicitado
-
-
+	
 	@Id
 	@SequenceGenerator(name="estudante_seq", sequenceName="estudante_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="estudante_seq")
