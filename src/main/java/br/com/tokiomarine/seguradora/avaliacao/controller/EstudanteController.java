@@ -37,7 +37,7 @@ public class EstudanteController {
 	@GetMapping("listar")
 	public String listarEstudantes(Model model) {
 		model.addAttribute("estudantes", service.buscarEstudantes());
-		return "index";
+		return "listar-estudantes";
 	}
 
 	@PostMapping("add")
@@ -45,10 +45,9 @@ public class EstudanteController {
 		if (result.hasErrors()) {
 			return "cadastrar-estudante";
 		}
-
 		service.cadastrarEstudante(estudante);
-
-		return "redirect:listar";
+		model.addAttribute("estudantes", service.buscarEstudantes());
+		return "listar-estudantes";
 	}
 
 	@GetMapping("editar/{id}")
@@ -64,11 +63,9 @@ public class EstudanteController {
 			// estudante.setId(id);
 			return "atualizar-estudante";
 		}
-
 		service.atualizarEstudante(estudante);
-
 		model.addAttribute("estudantes", service.buscarEstudantes());
-		return "index";
+		return "listar-estudantes";
 	}
 
 	@GetMapping("apagar/{id}")
@@ -76,6 +73,6 @@ public class EstudanteController {
 		service.excluirEstudante(id);
 		List<Estudante> estudantes = service.buscarEstudantes();
 		model.addAttribute("estudantes", (estudantes != null && estudantes.size() == 0) ? null : estudantes);
-		return "index";
+		return "listar-estudantes";
 	}
 }
